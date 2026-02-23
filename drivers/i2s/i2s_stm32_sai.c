@@ -231,7 +231,7 @@ void HAL_SAI_TxCpltCallback(SAI_HandleTypeDef *hsai)
 
 exit:
 	/* Free memory slab & exit */
-	k_mem_slab_free(stream->i2s_cfg.mem_slab, mem_block_tmp);
+	//k_mem_slab_free(stream->i2s_cfg.mem_slab, mem_block_tmp);
 }
 
 void HAL_SAI_ErrorCallback(SAI_HandleTypeDef *hsai)

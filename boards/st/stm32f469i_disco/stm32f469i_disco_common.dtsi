@@ -72,6 +72,7 @@
 		led2 = &red_led_3;
 		led3 = &blue_led_4;
 		sw0 = &user_button;
+		i2s-codec-tx = &sai1_a;
 	};
 };
 
@@ -90,6 +91,16 @@
 	div-p = <2>;
 	div-q = <7>;
 	div-r = <6>;
+	clocks = <&clk_hse>;
+	status = "okay";
+};
+
+&plli2s {
+	div-m = <8>;
+	mul-n = <410>;
+	div-q = <10>;
+	div-r = <6>;
+	post-div-q = <5>;
 	clocks = <&clk_hse>;
 	status = "okay";
 };
@@ -266,4 +277,32 @@ zephyr_udc0: &usbotg_fs {
 		hfront-porch = <34>;
 		vfront-porch = <16>;
 	};
+};
+
+&i2c2 {
+	pinctrl-0 = <&i2c2_scl_ph4 &i2c2_sda_ph5>;
+	pinctrl-names = "default";
+	status = "okay";
+
+	audio_codec: cs43l22@4a {
+		compatible = "cirrus,cs43l22";
+		reg = <0x4a>;
+		reset-gpios = <&gpioe 2 0>;
+		status = "okay";
+	};
+};
+
+&sai1_a {
+	clocks = <&rcc STM32_CLOCK(APB2, 22)>,
+		 <&rcc STM32_SRC_PLLI2S_POST_Q SAI1A_SEL(1)>;
+	pinctrl-0 = <&sai1_mclk_a_pg7 &sai1_sck_a_pe5 &sai1_sd_a_pe6 &sai1_fs_a_pe4>;
+	pinctrl-names = "default";
+	dma-names = "tx";
+	mclk-enable;
+	mclk-divider = "div-512";
+	status = "okay";
+};
+
+&dma2 {
+	status = "okay";
 };
