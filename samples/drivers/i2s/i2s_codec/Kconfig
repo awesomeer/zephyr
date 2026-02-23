@@ -27,7 +27,7 @@ config USE_CODEC_CLOCK
 
 config EXTRA_BLOCKS
 	int "Number of extra blocks"
-	default 32
+	default 0
 	help
 	  Extra blocks for storing PCM sample.
 

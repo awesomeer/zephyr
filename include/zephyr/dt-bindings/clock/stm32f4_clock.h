@@ -61,6 +61,8 @@
 #define CFGR_REG 0x08
 /** @brief RCC_BDCR register offset */
 #define BDCR_REG 0x70
+/** @brief RCC_DCKCFGR register offset */
+#define DCKCFGR_REG 0x8C
 
 /** @brief Device domain clocks selection helpers */
 /** CFGR devices */
@@ -71,6 +73,9 @@
 #define MCO2_SEL(val) STM32_DT_CLOCK_SELECT((val), 31, 30, CFGR_REG)
 /** BDCR devices */
 #define RTC_SEL(val)  STM32_DT_CLOCK_SELECT((val), 9, 8, BDCR_REG)
+/** DCKCFGR devices */
+#define SAI1A_SEL(val) STM32_DT_CLOCK_SELECT((val), 21, 20, DCKCFGR_REG)
+#define SAI1B_SEL(val) STM32_DT_CLOCK_SELECT((val), 23, 22, DCKCFGR_REG)
 
 /* MCO prescaler : division factor */
 #define MCO_PRE_DIV_1 0

@@ -228,6 +228,7 @@ void HAL_SAI_TxCpltCallback(SAI_HandleTypeDef *hsai)
 	if (ret < 0) {
 		stream->state = I2S_STATE_ERROR;
 		__HAL_SAI_DISABLE(hsai);
+		LOG_ERR("Failed to get data from queue: %d", ret);
 		goto exit;
 	}
 
@@ -243,7 +244,7 @@ void HAL_SAI_TxCpltCallback(SAI_HandleTypeDef *hsai)
 
 exit:
 	/* Free memory slab & exit */
-	k_mem_slab_free(stream->i2s_cfg.mem_slab, mem_block_tmp);
+	//k_mem_slab_free(stream->i2s_cfg.mem_slab, mem_block_tmp);
 }
 
 void HAL_SAI_ErrorCallback(SAI_HandleTypeDef *hsai)
