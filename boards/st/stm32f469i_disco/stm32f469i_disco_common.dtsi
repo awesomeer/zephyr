@@ -299,7 +299,7 @@ zephyr_udc0: &usbotg_fs {
 	pinctrl-names = "default";
 	dma-names = "tx";
 	mclk-enable;
-	mclk-divider = "div-512";
+	mclk-divider = "div-256";
 	status = "okay";
 };
 

@@ -13,7 +13,7 @@
 #include <string.h>
 
 #ifndef CONFIG_USE_DMIC
-#include "sine.h"
+#include "C:\Users\mithi\Documents\MATLAB\sine.h"
 #endif
 
 #define I2S_CODEC_TX DT_ALIAS(i2s_codec_tx)
@@ -192,12 +192,12 @@ int main(void)
 				/* If not using DMIC, play a sine wave 440Hz */
 
 				BUILD_ASSERT(
-					BLOCK_SIZE <= __16kHz16bit_stereo_sine_pcm_len,
+					BLOCK_SIZE == __16kHz16bit_stereo_sine_pcm_len,
 					"BLOCK_SIZE is bigger than test sine wave buffer size."
 				);
 				mem_block = (void *)&__16kHz16bit_stereo_sine_pcm;
 
-				ret = i2s_buf_write(i2s_dev_codec, mem_block, block_size);
+				ret = i2s_write(i2s_dev_codec, mem_block, block_size);
 #endif
 				if (ret < 0) {
 					printk("Failed to write data: %d\n", ret);

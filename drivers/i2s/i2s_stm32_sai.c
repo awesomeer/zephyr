@@ -216,6 +216,7 @@ void HAL_SAI_TxCpltCallback(SAI_HandleTypeDef *hsai)
 	if (ret < 0) {
 		stream->state = I2S_STATE_ERROR;
 		__HAL_SAI_DISABLE(hsai);
+		LOG_ERR("Failed to get data from queue: %d", ret);
 		goto exit;
 	}
 
